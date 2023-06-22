@@ -34,6 +34,7 @@ photsys_dict = odict([
         ('ps1' ,'tab_mag_odfnew/tab_mag_panstarrs1.dat'),
         ('acs_wfc' ,'tab_mag_odfnew/tab_mag_acs_wfc.dat'),
         ('lsst', 'tab_mag_odfnew/tab_mag_lsst.dat'),
+        ('gaia', 'tab_mag_odfnew/tab_mag_gaiaEDR3.dat') # not sure about file name
 ])
 
 photname_dict = odict([
@@ -42,8 +43,8 @@ photname_dict = odict([
         ('ps1' ,'Pan-STARRS1'),
         ('acs_wfc','HST/ACS'),
         ('lsst', 'LSST'),
+        ('gaia', 'GAIA EDR3')
 ])
-
 # Commented options may need to be restored for older version/isochrones.
 # The parameters were tracked down by:
 # Chrome -> View -> Developer -> Developer Tools
@@ -101,8 +102,8 @@ defaults_30 = dict(defaults_cmd,cmd_version=3.0)
 # This seems to maintain old ischrone format
 defaults_31 = dict(defaults_cmd,cmd_version=3.1)
 
-# New query and file format for 3.3...
-defaults_33 = {'cmd_version': 3.3,
+# New query and file format for 3.7...
+defaults_37 = {'cmd_version': 3.7,
                'track_parsec': 'parsec_CAF09_v1.2S',
                'track_colibri': 'parsec_CAF09_v1.2S_S35',
                'track_postagb': 'no',
@@ -242,7 +243,8 @@ class ParsecIsochrone(Isochrone):
         urlopen(url,timeout=2)
 
         q = urlencode(params).encode('utf-8')
-        logger.debug(url+'?'+q)
+        #logger.debug(url+'?'+q)
+        logger.debug(url+'?'+urlencode(params))
         c = str(urlopen(url, q).read())
         aa = re.compile('output\d+')
         fname = aa.findall(c)
