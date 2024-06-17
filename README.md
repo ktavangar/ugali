@@ -14,7 +14,7 @@ Authors: [Keith Bechtol](https://github.com/bechtol) & [Alex Drlica-Wagner](http
 Installation
 ------------
 
-There are several ways to install `ugali`.
+There are several ways to install this branch of `ugali`.
 
 The most robust way is to follow the installation procedure for the automated GitHub Actions build documented in [python-package.yml](.github/workflows/python-package.yml). This installation creates a `conda` environment with the necessary dependencies and installs `ugali`.
 ```bash
@@ -23,7 +23,7 @@ conda create -n ugali-env numpy scipy matplotlib astropy healpy pyyaml emcee nos
 source activate ugali-env
 
 # Clone source code from the parent repository
-git clone https://github.com/DarkEnergySurvey/ugali.git && cd ugali
+git clone https://github.com/ktavangar/ugali.git && cd ugali
 
 # Install just the python source code
 python setup.py install 
