@@ -33,6 +33,10 @@ import os
 from abc import abstractmethod
 import collections
 from collections import OrderedDict as odict
+try:
+    collectionsAbc = collections.abc
+except AttributeError:
+    collectionsAbc = collections
 import inspect
 import glob
 from functools import wraps
@@ -219,7 +223,7 @@ class IsochroneModel(Model):
             mass_init_min = self.mass_init[self.stage==self.hb_stage].min()
             mass_init_max = self.mass_init[self.stage==self.hb_stage].max()
             cut = (mass_init_array>mass_init_min)&(mass_init_array<mass_init_max)
-            if isinstance(self.hb_spread,collections.Iterable):
+            if isinstance(self.hb_spread,collectionsAbc.Iterable):
                 # Explicit dispersion spacing
                 dispersion_array = self.hb_spread
                 n = len(dispersion_array)
